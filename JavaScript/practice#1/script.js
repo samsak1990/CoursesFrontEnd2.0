@@ -127,10 +127,10 @@ const startCalculator = ()=>{
         alert('Incorrect numbers entered')
     } else if(num2 === 0 && action === '/'){
         alert('Syntax error: number / 0 --> incorrectly '  )
-    } 
-
-    if ((num1 && num2) && ['+', '-', '*', '/'].includes(action)){
-        result = eval(num1+action+num2) //знаю, что eval  нельзя использовать, но как вариат, иначе, например, через switch/case
+    } else if ((num1 && num2) && ['+', '-', '*', '/'].includes(action)){
+        result = eval(num1+action+num2) //знаю, что eval  нельзя использовать, но как вариант, иначе, например, через switch/case
+    } else {
+        alert("FATAL ERROR! Try again")
     }
     return result
 }
