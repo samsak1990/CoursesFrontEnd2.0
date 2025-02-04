@@ -21,7 +21,6 @@ console.log('TASK 2: ',
     typeof objectsTyp
 )
 
-
 //3. Создайте объект, который будет содержать свойства: name, age, city. Добавьте метод greet, который будет выводить приветствие с использованием свойств объекта. Пример: "Привет, меня зовут [name], мне [age] лет и я из [city]".
 
 const person = {
@@ -90,7 +89,7 @@ const anyUser = {
     isLoggedIn: true
 }
 
-const canAccess = (user)=> (user.role === 'admin' || user.role === 'editor') && (user.isLoggedIn === true) 
+const canAccess = (user)=> (user.role === 'admin' || user.role === 'editor') && user.isLoggedIn 
 
 
 console.log('TASK 8:', canAccess(anyUser))
