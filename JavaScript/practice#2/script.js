@@ -41,7 +41,7 @@ console.log(concatArrays(arr1,arr2))
 const numbers5 = [10, 20, 30, 40, 50];
 
 const deleteElemetsOfArray = arr => {
-    const copyOfOriginalArray = [...arr] //сделал копию, так как не хорошо изменять оригиналы данных
+    const copyOfOriginalArray = [...arr] // делаем копию, чтобы не изменять оригинал
     copyOfOriginalArray.splice(2,1)
     return copyOfOriginalArray
 }
