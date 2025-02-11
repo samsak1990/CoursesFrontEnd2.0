@@ -28,4 +28,37 @@ function checkLogin(username, password){
     }
 }
   
-console.log(checkLogin('admin', '1234'))
+// console.log(checkLogin('admin', '1234'))
+
+nums = [1,2,3,4]
+fn = function sum(accum, curr) { return accum + curr; }
+init = 0
+
+const reduce = function(nums, fn, init) {
+    if(nums.length == 0){
+      return init
+    }
+    for(let i = 0; i<nums.length ; i++){
+        init = fn(init, nums[i])
+    }  
+    return init
+  };
+
+//   console.log(reduce(nums,fn,init))
+
+const compose = function(functions) {
+    return function(x) {
+        return functions.reduceRight((acc, fn) => fn(acc), x);
+    }
+};
+
+// const fanc = compose([x => x + 1, x => 2 * x])
+// console.log(fn(4)) // 9
+
+
+const deepFlatten = (deepArr) => {
+    const newArr = deepArr.flat(Infinity)
+    return newArr.reverse()
+}
+
+console.log(deepFlatten([1, [2, [3, [4]]]]));
