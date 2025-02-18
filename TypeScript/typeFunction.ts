@@ -10,13 +10,18 @@ const userObj: {
   ageData: number;
 } = JSON.parse(userData);
 
-function logBrMsg(isBirthday: boolean, userName: string, age: number): string {
-  let message: string = "";
-  if (isBirthday) {
-    message = `Congrats ${userName.toUpperCase()}, age: ${age + 1}`;
-  }
+const createError = (msg: string): never => {
+  //never - becouse this function don't return anything
+  throw new Error(msg);
+};
 
-  return message;
+function logBrMsg(isBirthday: boolean, userName: string, age: number): string {
+  if (isBirthday) {
+    return `Congrats ${userName.toUpperCase()}, age: ${age + 1}`;
+  } else if (!isBirthday) {
+    return "Too bad";
+  }
+  return createError("Error");
 }
 
-console.log(logBrMsg());
+console.log(userObj.isBirthdayData, userObj.userNameData, userObj.ageData);
