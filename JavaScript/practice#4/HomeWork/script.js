@@ -100,15 +100,15 @@ const books = [
   { title: "Три тела", genre: "фантастика", rating: 8.8 }
 ];
 
-const filterBooks = books.filter(book=>{
-  return book.genre === "фантастика"
-})
-let averageRataing =  (filterBooks.reduce((acc,book)=>{
-  acc += book.rating
-  return acc
-},0) / filterBooks.length).toFixed(1)
+// const filterBooks = books.filter(book=>{
+//   return book.genre === "фантастика"
+// })
+// let averageRataing =  (filterBooks.reduce((acc,book)=>{
+//   acc += book.rating
+//   return acc
+// },0) / filterBooks.length).toFixed(1)
 
-console.log(filterBooks, averageRataing)
+// console.log(filterBooks, averageRataing)
 
 // 3. Преобразовать массив товаров: оставить только названия в верхнем регистре  
 // Дан массив товаров. Нужно:  
