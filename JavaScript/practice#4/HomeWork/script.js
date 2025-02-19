@@ -3,16 +3,30 @@
 
 // const numbers = [10, 20, 30, 40, 50];
 
+// for(let i in numbers){
+//   console.log(i)
+// }
+
+
 //  2. Использование`for of`(итерация по значениям массива)  
 // Дан массив строк.Используя`for of`, выведи в консоль все элементы массива.
 
 // const fruits = ["яблоко", "банан", "апельсин", "груша"];
+
+// for(let i of fruits){
+//   console.log(i)
+// }
 
 
 // 3. Использование `for` для суммирования чисел в массиве  
 // Дан массив чисел.Используя`for`, вычисли сумму всех элементов и выведи результат.
 
 // const numbers = [5, 10, 15, 20, 25];
+// let count = 0
+// for(let i in numbers){
+//   count += numbers[i]
+// }
+// console.log(count)
 
 
 // 4. Использование `while` для поиска первого четного числа  
@@ -20,11 +34,25 @@
 
 // const numbers = [1, 3, 7, 8, 9, 12];
 
+// let i = 0
+// while(i < numbers.length){
+//   if(numbers[i] % 2 == 0){
+//     console.log(numbers[i])
+//     break
+//   }
+//   i++
+// }
 
 // 5. Использование `do while` для вывода всех элементов массива  
 // Дан массив чисел.Используя`do while`, выведи в консоль все элементы массива.
 
 // const numbers = [3, 6, 9, 12, 15];
+
+// let y = 0
+// do{
+//   console.log(numbers[y])
+//   y++
+// } while(y < numbers.length)
 
 
 // 6. Использование `for` для создания нового массива с удвоенными значениями  
@@ -32,7 +60,11 @@
 
 // const numbers = [2, 4, 6, 8];
 
-
+// const emptyArray = []
+// for(let i = 0; i < numbers.length; i++){
+//   emptyArray.push(numbers[i]*2)
+// }
+// console.log(emptyArray)
 
 
 // 1. Отфильтровать и отсортировать пользователей по возрасту
@@ -49,7 +81,11 @@ const users = [
   { name: "Елена", age: 22 }
 ];
 
+// const filretUsers = users.filter(user=>{
+//   return user.age >= 18
+// }).sort((a,b)=> a.age - b.age).map(user => user.name)
 
+// console.log(filretUsers)
 
 // 2. Найти средний рейтинг книг определенного жанра
 // Дан массив книг. Нужно:  
@@ -64,6 +100,15 @@ const books = [
   { title: "Три тела", genre: "фантастика", rating: 8.8 }
 ];
 
+const filterBooks = books.filter(book=>{
+  return book.genre === "фантастика"
+})
+let averageRataing =  (filterBooks.reduce((acc,book)=>{
+  acc += book.rating
+  return acc
+},0) / filterBooks.length).toFixed(1)
+
+console.log(filterBooks, averageRataing)
 
 // 3. Преобразовать массив товаров: оставить только названия в верхнем регистре  
 // Дан массив товаров. Нужно:  

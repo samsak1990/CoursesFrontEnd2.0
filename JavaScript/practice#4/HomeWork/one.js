@@ -1,13 +1,16 @@
-// Напишите функцию`findOverlappingRanges(ranges)`, которая возвращает все пересекающиеся диапазоны чисел.
+// 16. Найти сумму чисел, содержащих определенную цифру(`reduce` + `filter`)
+// Создайте функцию`sumNumbersContainingDigit(arr, digit)`, которая суммирует только те числа, которые содержат указанную цифру.
 
-const ranges = [
-  [1, 5],
-  [4, 10],
-  [15, 20],
-  [18, 25],
-];
 
-const findOverlappingRanges = (arr) => {};
+const sumNumbersContainingDigit = (arr, num) =>{ 
+  const filterArr = arr.filter(item=>{
+    return String(item).includes(num.toString())
+  })
+  const result = filterArr.reduce((acc, elem)=>{
+    return acc += elem
+  }, 0)
+  return result
+}
 
-findOverlappingRanges(ranges);
-// [[1, 5], [4, 10]] и [[15, 20], [18, 25]]
+
+console.log(sumNumbersContainingDigit([123, 456, 789, 145], 1)); // 123 + 145 = 268

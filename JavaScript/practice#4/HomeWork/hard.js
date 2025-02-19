@@ -204,10 +204,30 @@ const ranges = [
   [15, 20],
   [18, 25],
 ];
+
+//РЕШАЛ НЕ САМ
+function findOverlappingRanges(ranges) {
+  return ranges.filter((range, index) => 
+    ranges.some((otherRange, otherIndex) =>
+      index !== otherIndex && range[1] >= otherRange[0] && range[0] <= otherRange[1]
+    )
+  );
+}
+
 findOverlappingRanges(ranges);
 // [[1, 5], [4, 10]] и [[15, 20], [18, 25]]
 
 // 16. Найти сумму чисел, содержащих определенную цифру(`reduce` + `filter`)
 // Создайте функцию`sumNumbersContainingDigit(arr, digit)`, которая суммирует только те числа, которые содержат указанную цифру.
+
+const sumNumbersContainingDigit = (arr, num) =>{ 
+  const filterArr = arr.filter(item=>{
+    return String(item).includes(num.toString())
+  })
+  const result = filterArr.reduce((acc, elem)=>{
+    return acc += elem
+  }, 0)
+  return result
+}
 
 sumNumbersContainingDigit([123, 456, 789, 145], 1); // 123 + 145 = 268
