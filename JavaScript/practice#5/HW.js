@@ -261,13 +261,42 @@ const users = [
 // const text = "JavaScript is awesome!";
 // Подсчитайте количество гласных(`a, e, i, o, u`).
 
+// const calcVowels = (str) => {
+//   const setVowels = ["a", "e", "i", "o", "u"];
+//   let counter = 0;
+//   for (let vowel of setVowels) {
+//     for (let letter of str) {
+//       if (vowel === letter) {
+//         counter += 1;
+//       }
+//     }
+//   }
+//   return counter;
+// };
+
+// console.log(calcVowels(text));
+
 //  22. Замена пробелов на`-`
 // Замените все пробелы в строке на`-`.
 // const text = "JavaScript is awesome!";
 
+// console.log(text.replaceAll(" ", "-"));
+
 //  23. Разворот строки
 // Переверните строку`"Hello, world!"`.
 
-//  24. Извлечение цифр из строки
+// const str = "Hello, world!";
+
+// console.log(str.split("").reverse().join(""));
+
+// //  24. Извлечение цифр из строки
 // const str = "User ID: 49876, Age: 27";
 // Извлеките все числа в виде массива`[49876, 27]`.
+
+// const setNumbs = [];
+// for (let cage of str.replace(",", "").split(" ")) {
+//   if (+cage) {
+//     setNumbs.push(cage);
+//   }
+// }
+// console.log(setNumbs);
