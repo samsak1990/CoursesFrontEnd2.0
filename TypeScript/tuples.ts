@@ -19,7 +19,7 @@ userDataTuple.push(50);
 userDataTuple[3]; //т.к. определено 3 элемента в кортеже
 
 const createError = (msg: string): never => {
-  //never - becouse this function don't return anything
+  //never - becouse this function return nothing
   throw new Error(msg);
 };
 
