@@ -54,7 +54,7 @@ function deepEqualHARD(array1, array2) {
         const extraObj1 = array1[value];
         const extraObj2 = array2[value];
         const matchResultExtraObjs = deepEqualHARD(extraObj1, extraObj2);
-        return matchResultExtraObjs !== "Not same" ? true : false;
+        return matchResultExtraObjs !== "Not same";
       }
       return array1[value] === array2[value];
     });
