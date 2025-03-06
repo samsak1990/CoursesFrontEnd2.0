@@ -37,11 +37,9 @@ function isEqual(array1, array2) {
   const setKeysB = Object.keys(array2);
 
   if (setKeysA === setKeysB) return "Objects is same";
+  if (setKeysA.length !== setKeysB.length) return "Objects isn't same";
 
-  if (
-    setKeysA.length == setKeysB.length &&
-    setKeysA.every((key) => setKeysB.includes(key))
-  ) {
+  if (setKeysA.every((key) => setKeysB.includes(key))) {
     const checkValues = setKeysA.every((value) => {
       const extraElem1 = array1[value];
       const extraElem2 = array2[value];
