@@ -67,5 +67,4 @@ function isEqual(array1, array2) {
   }
   return "Not same";
 }
-
 console.log(isEqual(a, b)); // true

@@ -1,8 +1,38 @@
-// 1. Функция debounce
+// 1. Функция debounce //РЕШАЛ И ГУГЛОМ
 // Напишите функцию, которая будет «дебаунсить» вызов другой функции.Дебаунсинг означает, что вызов переданной функции будет отложен на заданное время, и если в это время произойдет новый вызов, предыдущий отменяется.
+function debounce(func, wait = 0) {
+  let prevTimeoutId;
+
+  return (...args) => {
+    console.log(args);
+    clearInterval(prevTimeoutId);
+    prevTimeoutId = setTimeout(() => {
+      func(args);
+    }, wait);
+  };
+}
 
 // 2. Форматирование числа в строку с разделением разрядами
 // Задача: Напишите функцию, которая принимает число и форматирует его, добавляя разделители разрядов (например, для числа 1234567 возвращается строка "1,234,567").
+
+function separatorStrings(str, sep) {
+  const formatString = String(str).trim();
+  const rest = formatString.length % 3;
+  const separated = [];
+
+  if (!formatString || formatString === "" || formatString === "undefined") {
+    return "String is not found";
+  }
+  if (rest) {
+    separated.push(formatString.slice(0, rest));
+  }
+  for (let i = rest; i < formatString.length; i = i + 3) {
+    separated.push(formatString.slice(i, i + 3));
+  }
+  return separated.join(",");
+}
+
+// console.log(separatorStrings(12145684845151));
 
 // 3. Генерация случайного пароля
 // Напишите функцию, которая генерирует случайный пароль длиной 12 символов, включающий заглавные и строчные буквы, цифры и специальные символы.
@@ -30,11 +60,31 @@ function randomPasswordGenerator(length) {
 
 // 4. Создайте функцию camelToSnake(str), которая превращает строку из camelCase в snake_case.
 
+function camelToSnake(str) {
+  return str
+    .trim()
+    .split("")
+    .map((letter) => {
+      if (letter.toUpperCase() === letter) {
+        return "_" + letter.toUpperCase();
+      }
+      return letter;
+    })
+    .join("");
+}
+
+console.log(camelToSnake("helloWorldIsNewCity"));
+
 // camelToSnake("helloWorld"); // "hello_world"
 // camelToSnake("someVariableName"); // "some_variable_name"
 
 // 5. Методы строк: зашифровка
 // Напишите функцию caesarCipher(str, shift), которая шифрует строку сдвигом букв по шифру Цезаря. (Используй charCodeAt и String.fromCharCode)
+
+function caesarCipher(str, shift) {
+  let encryptedString = "";
+  return encryptedString;
+}
 
 // caesarCipher("hello", 3); // "khoor"
 // caesarCipher("abc", 1); // "bcd"
@@ -99,19 +149,14 @@ function isEqual(array1, array2) {
     const checkValues = setKeysA.every((value) => {
       const extraElem1 = array1[value];
       const extraElem2 = array2[value];
-      const isArray =
-        extraElem1 instanceof Array && extraElem2 instanceof Array;
-      const isObject =
-        extraElem1 instanceof Object && extraElem2 instanceof Object;
-
-      if (isArray) {
+      if (extraElem1 instanceof Array && extraElem2 instanceof Array) {
         const matchResultExtraArrs = extraElem1.every((value) => {
           if (extraElem1.length === extraElem2.length)
             return extraElem2.includes(value);
         });
         return matchResultExtraArrs;
       }
-      if (isObject) {
+      if (extraElem1 instanceof Object && extraElem2 instanceof Object) {
         const matchResultExtraObjs = isEqual(extraElem1, extraElem2);
         return matchResultExtraObjs !== "Not same";
       }
@@ -121,7 +166,7 @@ function isEqual(array1, array2) {
   }
   return "Not same";
 }
-console.log(isEqual(a, b));
+// console.log(isEqual(a, b));
 
 // 9. Напиши функцию toRoman(n), которая конвертирует число в римскую запись(в пределах от 1 до 3999).
 
