@@ -32,7 +32,7 @@ function deepEqualEASY(a, b) {
 }
 
 //другой вариант
-function deepEqualHARD(array1, array2) {
+function isEqual(array1, array2) {
   const setKeysA = Object.keys(array1);
   const setKeysB = Object.keys(array2);
 
@@ -43,26 +43,29 @@ function deepEqualHARD(array1, array2) {
     setKeysA.every((key) => setKeysB.includes(key))
   ) {
     const checkValues = setKeysA.every((value) => {
-      if (array1[value] instanceof Array && array2[value] instanceof Array) {
-        const extraArr1 = array1[value];
-        const extraArr2 = array2[value];
-        const matchResultExtraArrs = extraArr1.every((value) => {
-          if (extraArr1.length === extraArr2.length)
-            return extraArr2.includes(value);
+      const extraElem1 = array1[value];
+      const extraElem2 = array2[value];
+      const isArray =
+        extraElem1 instanceof Array && extraElem2 instanceof Array;
+      const isObject =
+        extraElem1 instanceof Object && extraElem2 instanceof Object;
+
+      if (isArray) {
+        const matchResultExtraArrs = extraElem1.every((value) => {
+          if (extraElem1.length === extraElem2.length)
+            return extraElem2.includes(value);
         });
         return matchResultExtraArrs;
       }
-      if (array1[value] instanceof Object && array2[value] instanceof Object) {
-        const extraObj1 = array1[value];
-        const extraObj2 = array2[value];
-        const matchResultExtraObjs = deepEqualHARD(extraObj1, extraObj2);
+      if (isObject) {
+        const matchResultExtraObjs = isEqual(extraElem1, extraElem2);
         return matchResultExtraObjs !== "Not same";
       }
-      return array1[value] === array2[value];
+      return extraElem1 === extraElem2;
     });
     return checkValues ? "Same" : "Not same";
   }
   return "Not same";
 }
 
-console.log(deepEqualHARD(a, b)); // true
+console.log(isEqual(a, b)); // true

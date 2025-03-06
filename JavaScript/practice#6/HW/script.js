@@ -7,6 +7,27 @@
 // 3. Генерация случайного пароля
 // Напишите функцию, которая генерирует случайный пароль длиной 12 символов, включающий заглавные и строчные буквы, цифры и специальные символы.
 
+function getAllAsciiChars() {
+  let chars = "";
+  for (let i = 32; i < 127; i++) {
+    // 32 до 126 для печатных символов ASCII
+    chars += String.fromCharCode(i);
+  }
+  return chars;
+}
+
+function randomPasswordGenerator(length) {
+  const symbols = getAllAsciiChars();
+  let password = [];
+  for (let i = 0; i < length; i++) {
+    let randomIndex = Math.floor(Math.random() * symbols.length);
+    password.push(symbols[randomIndex]);
+  }
+  return password.join("");
+}
+
+// console.log(randomPasswordGenerator(12));
+
 // 4. Создайте функцию camelToSnake(str), которая превращает строку из camelCase в snake_case.
 
 // camelToSnake("helloWorld"); // "hello_world"
@@ -42,6 +63,7 @@ const a = {
     tag1: "tag1",
     tag: "2",
     newObj: {
+      ff: 7,
       listNew: [1, 2.5],
     },
   },
@@ -57,6 +79,7 @@ const b = {
     tag: "2",
     newObj: {
       listNew: [1, 2.5],
+      ff: 7,
     },
   },
   add: "fff",
@@ -74,22 +97,25 @@ function isEqual(array1, array2) {
     setKeysA.every((key) => setKeysB.includes(key))
   ) {
     const checkValues = setKeysA.every((value) => {
-      if (array1[value] instanceof Array && array2[value] instanceof Array) {
-        const extraArr1 = array1[value];
-        const extraArr2 = array2[value];
-        const matchResultExtraArrs = extraArr1.every((value) => {
-          if (extraArr1.length === extraArr2.length)
-            return extraArr2.includes(value);
+      const extraElem1 = array1[value];
+      const extraElem2 = array2[value];
+      const isArray =
+        extraElem1 instanceof Array && extraElem2 instanceof Array;
+      const isObject =
+        extraElem1 instanceof Object && extraElem2 instanceof Object;
+
+      if (isArray) {
+        const matchResultExtraArrs = extraElem1.every((value) => {
+          if (extraElem1.length === extraElem2.length)
+            return extraElem2.includes(value);
         });
         return matchResultExtraArrs;
       }
-      if (array1[value] instanceof Object && array2[value] instanceof Object) {
-        const extraObj1 = array1[value];
-        const extraObj2 = array2[value];
-        const matchResultExtraObjs = isEqual(extraObj1, extraObj2);
+      if (isObject) {
+        const matchResultExtraObjs = isEqual(extraElem1, extraElem2);
         return matchResultExtraObjs !== "Not same";
       }
-      return array1[value] === array2[value];
+      return extraElem1 === extraElem2;
     });
     return checkValues ? "Same" : "Not same";
   }
