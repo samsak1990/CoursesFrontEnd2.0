@@ -101,9 +101,6 @@ function caesarCipher(str, shift = 1) {
       case currentCode > 57 && currentCode < 65:
         currentCode = 48;
         break;
-      default:
-        currentCode;
-        break;
     }
     encryptedString += String.fromCharCode(currentCode);
   }
@@ -111,8 +108,8 @@ function caesarCipher(str, shift = 1) {
   return encryptedString;
 }
 
-caesarCipher("hellozz1", 3); // "khooraa4"
-caesarCipher("abc", 1); // "bcd"
+// caesarCipher("hellozz1", 3); // "khooraa4"
+// caesarCipher("abc", 1); // "bcd"
 
 
 // 6. Реализация метода groupBy для массива объектов
@@ -121,12 +118,58 @@ caesarCipher("abc", 1); // "bcd"
 // groupBy([
 //   { id: 1, category: "A" },
 //   { id: 2, category: "B" },
-//   { id: 3, category: "A" },
+//   { id: 4, category: "A" },
+//   { id: 2, category: "B" },
+//   { id: 2, category: "c" },
 // ], "category");
 // { A: [{ id: 1, category: "A" }, { id: 3, category: "A" }], B: [{ id: 2, category: "B" }] }
 
-// 7. Реализация метода memoize для вычислений
+
+function groupBy(arr, key){
+  if(arr.length == 0) {
+    return 'Array is empty'
+  }
+  const result = arr.reduce((acc, obj)=>{
+    let currentKey = obj[key]
+    if(!acc[currentKey]){
+      acc[currentKey] = []
+    }
+    acc[currentKey].push(obj)
+    return acc
+  }, {})
+  console.log(result)
+  return result
+}
+
+// 7. Реализация метода memoize для вычислений //Привет ГУГЛ
 // Напишите функцию memoize, которая будет запоминать результаты вычислений для определенных входных параметров.Если функция будет вызвана с теми же параметрами, результат должен быть взят из кеша (localStorage или просто объект в программе).
+
+function memoize(func){
+  const cash = {}
+  return (...args)=>{
+    const key = JSON.stringify(args)
+    if(cash[key]) return 'From cash - ' + cash[key]
+    const result = func(...args)
+    cash[key] = func(...args)
+    console.log(cash)
+    return 'Complite calc - ' + result
+  }
+}
+
+function add(a, b){
+  return a + b
+}
+
+function minus(a, b){
+  return a - b
+} 
+
+const memoAdd = memoize(add)
+const memoMinus = memoize(minus)
+
+console.log(memoAdd(1,2))
+console.log(memoAdd(2,1))
+console.log(memoMinus(2,1))
 
 // 8. Реализация метода isEqual для глубокого сравнения объектов
 // Напишите функцию isEqual, которая будет выполнять глубокое сравнение двух объектов. Функция должна учитывать вложенные объекты и массивы.
@@ -147,6 +190,8 @@ const a = {
   key5: 2,
 };
 const b = {
+  add: "fff",
+  key5: 2,
   list: [1, 2, 3, 4, 5],
   key3: 1,
   key6: 2,
@@ -158,8 +203,6 @@ const b = {
       ff: 7,
     },
   },
-  add: "fff",
-  key5: 2,
 };
 
 function isEqual(array1, array2) {
