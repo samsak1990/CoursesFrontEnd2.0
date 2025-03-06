@@ -33,32 +33,3 @@ function myPromiseAll(promises) {
 myPromiseAll([promise1, promise2, promise3])
   .then((result) => result)
   .then((data) => console.log(data));
-
-// function myPromiseAll(promises) {
-//   return new Promise((resolve, reject) => {
-//     const results = [];
-//     let completedPromises = 0;
-
-//     if (promises.length === 0) {
-//       resolve(results);
-//       return;
-//     }
-
-//     promises.forEach((promise, index) => {
-//       Promise.resolve(promise)
-//         .then((result) => {
-//           results[index] = result;
-//           completedPromises++;
-
-//           if (completedPromises === promises.length) {
-//             resolve(results);
-//           }
-//         })
-//         .catch((error) => {
-//           reject(error);
-//         });
-//     });
-//   });
-// }
-
-// Пример использования:

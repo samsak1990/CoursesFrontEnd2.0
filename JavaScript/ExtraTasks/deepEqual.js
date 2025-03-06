@@ -8,17 +8,19 @@ const a = {
   obj: {
     tag1: "tag1",
     tag: "2",
+    newObj: {},
   },
   add: "fff",
   key5: 2,
 };
 const b = {
-  list: [1, 2, 4, 3],
+  list: [1, 2, 3, 4, 5],
   key3: 1,
   key6: 2,
   obj: {
     tag1: "tag1",
     tag: "2",
+    newObj: {},
   },
   add: "fff",
   key5: 2,

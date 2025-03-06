@@ -18,7 +18,6 @@
 // caesarCipher("hello", 3); // "khoor"
 // caesarCipher("abc", 1); // "bcd"
 
-
 // 6. Реализация метода groupBy для массива объектов
 // Напиши функцию groupBy(arr, key), которая группирует массив объектов по заданному ключу key.Функция должна возвращать объект, где ключами будут значения из поля key, а значениями — массивы объектов, содержащие эти значения.
 
@@ -34,6 +33,69 @@
 
 // 8. Реализация метода isEqual для глубокого сравнения объектов
 // Напишите функцию isEqual, которая будет выполнять глубокое сравнение двух объектов. Функция должна учитывать вложенные объекты и массивы.
+
+const a = {
+  list: [1, 2, 3, 4, 5],
+  key3: 1,
+  key6: 2,
+  obj: {
+    tag1: "tag1",
+    tag: "2",
+    newObj: {
+      listNew: [1, 2.5],
+    },
+  },
+  add: "fff",
+  key5: 2,
+};
+const b = {
+  list: [1, 2, 3, 4, 5],
+  key3: 1,
+  key6: 2,
+  obj: {
+    tag1: "tag1",
+    tag: "2",
+    newObj: {
+      listNew: [1, 2.5],
+    },
+  },
+  add: "fff",
+  key5: 2,
+};
+
+function isEqual(array1, array2) {
+  const setKeysA = Object.keys(array1);
+  const setKeysB = Object.keys(array2);
+
+  if (setKeysA === setKeysB) return "Objects is same";
+
+  if (
+    setKeysA.length == setKeysB.length &&
+    setKeysA.every((key) => setKeysB.includes(key))
+  ) {
+    const checkValues = setKeysA.every((value) => {
+      if (array1[value] instanceof Array && array2[value] instanceof Array) {
+        const extraArr1 = array1[value];
+        const extraArr2 = array2[value];
+        const matchResultExtraArrs = extraArr1.every((value) => {
+          if (extraArr1.length === extraArr2.length)
+            return extraArr2.includes(value);
+        });
+        return matchResultExtraArrs;
+      }
+      if (array1[value] instanceof Object && array2[value] instanceof Object) {
+        const extraObj1 = array1[value];
+        const extraObj2 = array2[value];
+        const matchResultExtraObjs = isEqual(extraObj1, extraObj2);
+        return matchResultExtraObjs !== "Not same";
+      }
+      return array1[value] === array2[value];
+    });
+    return checkValues ? "Same" : "Not same";
+  }
+  return "Not same";
+}
+console.log(isEqual(a, b));
 
 // 9. Напиши функцию toRoman(n), которая конвертирует число в римскую запись(в пределах от 1 до 3999).
 
