@@ -73,7 +73,7 @@ function camelToSnake(str) {
     .join("");
 }
 
-console.log(camelToSnake("helloWorldIsNewCity"));
+// console.log(camelToSnake("helloWorldIsNewCity"));
 
 // camelToSnake("helloWorld"); // "hello_world"
 // camelToSnake("someVariableName"); // "some_variable_name"
@@ -81,13 +81,67 @@ console.log(camelToSnake("helloWorldIsNewCity"));
 // 5. Методы строк: зашифровка
 // Напишите функцию caesarCipher(str, shift), которая шифрует строку сдвигом букв по шифру Цезаря. (Используй charCodeAt и String.fromCharCode)
 
-function caesarCipher(str, shift) {
+function caesarCipher(str, shift = 1) {
   let encryptedString = "";
+  for (let i = 0; i < str.length; i++) {
+    let currentCode = str.charCodeAt(i) + shift;
+    console.log("1. ", currentCode);
+    switch (true) {
+      case currentCode > 1103:
+        currentCode = 1072;
+        break;
+      case currentCode > 1071:
+        currentCode = 1040;
+        break;
+      case currentCode > 122:
+        currentCode = 97;
+        break;
+      case currentCode > 90:
+        currentCode = 65;
+        break;
+      case currentCode > 57:
+        currentCode = 48;
+        break;
+      default:
+        currentCode;
+        break;
+    }
+    console.log("2. ", currentCode);
+    encryptedString += String.fromCharCode(currentCode);
+  }
+  console.log(encryptedString);
   return encryptedString;
 }
+// caesarCipher("az", 1);
+// caesarCipher("AZ", 1);
+// caesarCipher("ая", 1);
+// caesarCipher("АЯ", 1);
+// caesarCipher("09", 1);
+caesarCipher("helloz", 3); // "khoor"
+caesarCipher("abc", 1); // "bcd"
 
-// caesarCipher("hello", 3); // "khoor"
-// caesarCipher("abc", 1); // "bcd"
+// let currentCode = "z".charCodeAt(0) + 1;
+// switch (true) {
+//   case currentCode > 1103:
+//     currentCode = 1072;
+//     break;
+//   case currentCode > 1071:
+//     currentCode = 1040;
+//     break;
+//   case currentCode > 122:
+//     currentCode = 97;
+//     break;
+//   case currentCode > 90:
+//     currentCode = 65;
+//     break;
+//   case currentCode > 57:
+//     currentCode = 48;
+//     break;
+//   default:
+//     currentCode;
+//     break;
+// }
+// console.log(currentCode);
 
 // 6. Реализация метода groupBy для массива объектов
 // Напиши функцию groupBy(arr, key), которая группирует массив объектов по заданному ключу key.Функция должна возвращать объект, где ключами будут значения из поля key, а значениями — массивы объектов, содержащие эти значения.
