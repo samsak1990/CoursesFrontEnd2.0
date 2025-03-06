@@ -60,5 +60,6 @@ emitter.emit("message", "Hello again!");
 emitter.off("message", onMessage);
 emitter.emit("message", "Hello!");
 emitter.once("greet", (name) => console.log(`Hello, ${name}!`));
+emitter.once("greet", (name) => console.log(`Bye, ${name}!`));
 emitter.emit("greet", "Андрей");
 emitter.emit("greet", "Андрей");

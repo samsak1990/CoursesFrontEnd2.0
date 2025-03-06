@@ -45,19 +45,14 @@ function isEqual(array1, array2) {
     const checkValues = setKeysA.every((value) => {
       const extraElem1 = array1[value];
       const extraElem2 = array2[value];
-      const isArray =
-        extraElem1 instanceof Array && extraElem2 instanceof Array;
-      const isObject =
-        extraElem1 instanceof Object && extraElem2 instanceof Object;
-
-      if (isArray) {
+      if (extraElem1 instanceof Array && extraElem2 instanceof Array) {
         const matchResultExtraArrs = extraElem1.every((value) => {
           if (extraElem1.length === extraElem2.length)
             return extraElem2.includes(value);
         });
         return matchResultExtraArrs;
       }
-      if (isObject) {
+      if (extraElem1 instanceof Object && extraElem2 instanceof Object) {
         const matchResultExtraObjs = isEqual(extraElem1, extraElem2);
         return matchResultExtraObjs !== "Not same";
       }
