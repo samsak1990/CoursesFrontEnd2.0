@@ -8,7 +8,9 @@ const a = {
   obj: {
     tag1: "tag1",
     tag: "2",
-    newObj: {},
+    newObj: {
+      re: [5],
+    },
   },
   add: "fff",
   key5: 2,
@@ -20,7 +22,9 @@ const b = {
   obj: {
     tag1: "tag1",
     tag: "2",
-    newObj: {},
+    newObj: {
+      re: [5],
+    },
   },
   add: "fff",
   key5: 2,
@@ -37,9 +41,11 @@ function isEqual(array1, array2) {
   const setKeysB = Object.keys(array2);
 
   if (setKeysA === setKeysB) return "Objects is same";
-  if (setKeysA.length !== setKeysB.length) return "Objects isn't same";
 
-  if (setKeysA.every((key) => setKeysB.includes(key))) {
+  if (
+    setKeysA.length == setKeysB.length &&
+    setKeysA.every((key) => setKeysB.includes(key))
+  ) {
     const checkValues = setKeysA.every((value) => {
       const extraElem1 = array1[value];
       const extraElem2 = array2[value];
