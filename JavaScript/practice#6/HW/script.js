@@ -89,7 +89,7 @@ function caesarCipher(str, shift = 1) {
       case currentCode > 1103:
         currentCode = 1072;
         break;
-      case currentCode > 1071 && currentCode <1072:
+      case currentCode > 1071 && currentCode < 1072:
         currentCode = 1040;
         break;
       case currentCode > 122 && currentCode < 1040:
@@ -111,7 +111,6 @@ function caesarCipher(str, shift = 1) {
 // caesarCipher("hellozz1", 3); // "khooraa4"
 // caesarCipher("abc", 1); // "bcd"
 
-
 // 6. Реализация метода groupBy для массива объектов
 // Напиши функцию groupBy(arr, key), которая группирует массив объектов по заданному ключу key.Функция должна возвращать объект, где ключами будут значения из поля key, а значениями — массивы объектов, содержащие эти значения.
 
@@ -124,52 +123,51 @@ function caesarCipher(str, shift = 1) {
 // ], "category");
 // { A: [{ id: 1, category: "A" }, { id: 3, category: "A" }], B: [{ id: 2, category: "B" }] }
 
-
-function groupBy(arr, key){
-  if(arr.length == 0) {
-    return 'Array is empty'
+function groupBy(arr, key) {
+  if (arr.length == 0) {
+    return "Array is empty";
   }
-  const result = arr.reduce((acc, obj)=>{
-    let currentKey = obj[key]
-    if(!acc[currentKey]){
-      acc[currentKey] = []
+  const result = arr.reduce((acc, obj) => {
+    let currentKey = obj[key];
+    if (!acc[currentKey]) {
+      acc[currentKey] = [];
     }
-    acc[currentKey].push(obj)
-    return acc
-  }, {})
-  console.log(result)
-  return result
+    acc[currentKey].push(obj);
+    return acc;
+  }, {});
+  console.log(result);
+  return result;
 }
 
 // 7. Реализация метода memoize для вычислений //Привет ГУГЛ
 // Напишите функцию memoize, которая будет запоминать результаты вычислений для определенных входных параметров.Если функция будет вызвана с теми же параметрами, результат должен быть взят из кеша (localStorage или просто объект в программе).
 
-function memoize(func){
-  const cash = {}
-  return (...args)=>{
-    const key = JSON.stringify(args)
-    if(cash[key]) return 'From cash - ' + cash[key]
-    const result = func(...args)
-    cash[key] = func(...args)
-    console.log(cash)
-    return 'Complite calc - ' + result
-  }
+function memoize(func) {
+  const cash = {};
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (cash[key]) return "From cash - " + cash[key];
+    const result = func(...args);
+    cash[key] = func(...args);
+    console.log(cash);
+    return "Complite calc - " + result;
+  };
 }
 
-function add(a, b){
-  return a + b
+function add(a, b) {
+  return a + b;
 }
 
-function minus(a, b){
-  return a - b
-} 
+function minus(a, b) {
+  return a - b;
+}
 
-const memoAdd = memoize(add)
-const memoMinus = memoize(minus)
+const memoAdd = memoize(add);
+const memoMinus = memoize(minus);
 
-console.log(memoAdd(1,2))
-console.log(memoAdd(2,1))
-console.log(memoMinus(2,1))
+// console.log(memoAdd(1, 2));
+// console.log(memoAdd(2, 1));
+// console.log(memoMinus(2, 1));
 
 // 8. Реализация метода isEqual для глубокого сравнения объектов
 // Напишите функцию isEqual, которая будет выполнять глубокое сравнение двух объектов. Функция должна учитывать вложенные объекты и массивы.
@@ -238,13 +236,108 @@ function isEqual(array1, array2) {
 // console.log(isEqual(a, b));
 
 // 9. Напиши функцию toRoman(n), которая конвертирует число в римскую запись(в пределах от 1 до 3999).
+const arabicToRoman = {
+  0: "",
+  1: "I",
+  2: "II",
+  3: "III",
+  4: "IV",
+  5: "V",
+  6: "VI",
+  7: "VII",
+  8: "VIII",
+  9: "IX",
+  10: "X",
+  20: "XX",
+  30: "XXX",
+  40: "XL",
+  50: "L",
+  60: "LX",
+  70: "LXX",
+  80: "LXXX",
+  90: "XC",
+  100: "C",
+  200: "CC",
+  300: "CCC",
+  400: "CD",
+  500: "D",
+  600: "DC",
+  700: "DCC",
+  800: "DCCC",
+  900: "CM",
+  1000: "M",
+  2000: "MM",
+  3000: "MMM",
+};
 
+function toRoman(n) {
+  if (n < 1 || n > 3999) {
+    throw new Error("Число должно быть в пределах от 1 до 3999");
+  }
+  return (
+    arabicToRoman[Math.floor(n / 1000) * 1000] +
+    arabicToRoman[Math.floor((n % 1000) / 100) * 100] +
+    arabicToRoman[Math.floor((n % 100) / 10) * 10] +
+    arabicToRoman[n % 10]
+  );
+}
+// console.log(toRoman(3));
 // toRoman(58);  // "LVIII"
 // toRoman(3999); // "MMMCMXCIX"
 
+//решение Capilot
+
+// function toRoman(num) {
+//   if (num < 1 || num > 3999) {
+//     throw new Error("Число должно быть в пределах от 1 до 3999");
+//   }
+
+//   const romanNumerals = [
+//     ["M", 1000],
+//     ["CM", 900],
+//     ["D", 500],
+//     ["CD", 400],
+//     ["C", 100],
+//     ["XC", 90],
+//     ["L", 50],
+//     ["XL", 40],
+//     ["X", 10],
+//     ["IX", 9],
+//     ["V", 5],
+//     ["IV", 4],
+//     ["I", 1]
+//   ];
+
+//   let result = "";
+
+//   romanNumerals.forEach(([roman, value]) => {
+//     while (num >= value) {
+//       result += roman;
+//       num -= value;
+//     }
+//   });
+
+//   return result;
+// }
+
 // 10. Напиши функцию myThrottle(fn, limit), которая будет вызывать функцию fn не чаще, чем раз в limit миллисекунд, даже если она вызывается несколько раз в этом интервале.
 
-// const log = myThrottle(() => console.log("Hello!"), 1000);
-// log();  // "Hello!" сразу
-// log();  // игнорируется
-// log();  // игнорируется
+function myThrottle(fn, limit) {
+  let flag = true;
+  return (...args) => {
+    if (!flag) {
+      console.log("System is busy. Please, try again later!");
+    } else {
+      flag = false;
+      fn.apply(this, args); //this добавил по рекомендации из Интернета. В целом сиысл this здесь ясен, но все же нужно более делальное пояснение!!
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  };
+}
+
+const log = myThrottle(() => console.log("Hello!"), 1000);
+log(); // "Hello!" сразу
+log(); // игнорируется
+log(); // игнорируется
