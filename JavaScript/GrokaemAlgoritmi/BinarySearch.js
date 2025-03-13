@@ -1,12 +1,11 @@
 function binarySearch(arr, valueSearch){
-    let startRange = 0, 
-    finishRange = arr.length - 1
+    const sortArray = arr.sort()
+    let startRange = 0,  finishRange = sortArray.length - 1
     while(startRange < finishRange ){
         let middleRange = Math.floor((startRange + finishRange) / 2),
-        guess = arr[middleRange]
-        console.log(guess)
+        guess = sortArray[middleRange]
         if(valueSearch === guess)
-            return `Index ${middleRange}`
+            return `Found`
         if(valueSearch > middleRange){
             startRange = middleRange + 1
         } else if( valueSearch < middleRange){
@@ -17,4 +16,5 @@ function binarySearch(arr, valueSearch){
 }
 
 
-console.log(binarySearch([1,2,3,5,7,9,12,20], 8))
+console.log(binarySearch([0,5,8,4,3,2,9,20], 4))
+
