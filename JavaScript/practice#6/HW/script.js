@@ -5,7 +5,7 @@ function debounce(func, wait = 0) {
 
   return (...args) => {
     console.log(args);
-    clearInterval(prevTimeoutId);
+    clearTimeout(prevTimeoutId);
     prevTimeoutId = setTimeout(() => {
       func(args);
     }, wait);
@@ -203,19 +203,20 @@ const b = {
   },
 };
 
-function isEqual(array1, array2) {
-  const setKeysA = Object.keys(array1);
-  const setKeysB = Object.keys(array2);
+function isEqual(obj1, obj2) {
+  if (obj1 === obj2) return true;
+  
+  const setKeysA = Object.keys(obj1);
+  const setKeysB = Object.keys(obj2);
 
-  if (setKeysA === setKeysB) return "Objects is same";
 
   if (
     setKeysA.length == setKeysB.length &&
     setKeysA.every((key) => setKeysB.includes(key))
   ) {
     const checkValues = setKeysA.every((value) => {
-      const extraElem1 = array1[value];
-      const extraElem2 = array2[value];
+      const extraElem1 = obj1[value];
+      const extraElem2 = obj2[value];
       if (extraElem1 instanceof Array && extraElem2 instanceof Array) {
         const matchResultExtraArrs = extraElem1.every((value) => {
           if (extraElem1.length === extraElem2.length)
@@ -232,6 +233,33 @@ function isEqual(array1, array2) {
     return checkValues ? "Same" : "Not same";
   }
   return "Not same";
+}
+
+
+
+function isEqual2(obj1, obj2) {
+  // Проверяем, являются ли аргументы объектами
+  if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) {
+    return obj1 === obj2;
+  }
+
+  // Получаем ключи объектов
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  // Проверяем, что объекты имеют одинаковое количество ключей
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  // Рекурсивно сравниваем значения по ключам
+  for (const key of keys1) {
+    if (!Object.prototype.hasOwnProperty.call(obj2, key) || !isEqual(obj1[key], obj2[key])) {
+      return false;
+    }
+  }
+
+  return true;
 }
 // console.log(isEqual(a, b));
 

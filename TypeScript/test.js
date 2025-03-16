@@ -1,0 +1,1 @@
+console.log(new Date("2022-05-24T12:00:00").getTime())

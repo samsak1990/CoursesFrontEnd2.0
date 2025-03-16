@@ -30,12 +30,14 @@ class EventEmitter {
   }
 
   off(type, fn) {
-    if (!this.events[type]) {
-      throw new Error("Function is not found in system!");
-    }
+    if (!this.events[type]) return
     this.events[type] = this.events[type].filter((funcEvents) => {
       return funcEvents !== fn;
     });
+    // Удаляем массив событий, если обработчиков больше нет
+    if (this.events[type].length === 0) {
+      delete this.events[type];
+    }
   }
 
   emit(type, data) {
