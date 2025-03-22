@@ -163,7 +163,7 @@ document.body.append(boxFeedback)
 reviews.forEach(view => {
   boxFeedback.innerHTML += `<div class="review-card">
                               <h2>${view.author}</h2>
-                              <p>${''.padStart(view.rating, '⭐')}</p>
+                              <p>${'⭐'.repeat(view.rating)}</p>
                               <p>${view.text}</p>
                             </div>`
 })
