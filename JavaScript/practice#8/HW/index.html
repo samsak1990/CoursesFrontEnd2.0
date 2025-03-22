@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./script.js"></script>
+    <title>Работа с DOM</title>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      body{
+        background-color: white;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      body.dark-theme {
+        background-color: #333;
+        color: white;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .active {
+        background-color: yellow;
+      }
+
+      .error {
+        border: 2px solid red;
+      }
+
+      .resizable {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+      }
+
+      .tasksList{
+        line-height: 40px;
+      }
+
+      .box-cards{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+        border: 1px solid rgb(211, 152, 63);
+        border-radius: 20px;
+        min-height: 100px;
+        padding: 10px;
+        justify-content: space-around;
+      }
+
+      .blog-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 100px;
+        max-width: 200px;
+        min-height: 100px;
+        border: 1px solid brown;
+        border-radius:10px;
+        padding: 5px;
+      }
+      .feedback{
+        width: 100%;
+        min-height: 50px;
+        border: 1px solid green;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+      }
+      .review-card{
+        padding: 10px;
+      }
+      .review-card:not(:last-child){
+        border-bottom: 1px solid black;
+      }
+      .box-dishes{
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. Кнопка переключения темы -->
+    <button id="toggle-theme">Переключить тему</button>
+
+    <!-- 2. Изменение текста по клику -->
+    <p id="change-text">Нажми на меня</p>
+
+    <!-- 3. Раскрывающийся список -->
+    <button id="toggle-list">Показать список</button>
+    <ul id="dropdown-list" class="hidden">
+      <li>Элемент 1</li>
+      <li>Элемент 2</li>
+      <li>Элемент 3</li>
+    </ul>
+
+    <!-- 4. Подсветка активного элемента списка -->
+    <ul id="highlight-list">
+      <li>Элемент A</li>
+      <li>Элемент B</li>
+      <li>Элемент C</li>
+    </ul>
+
+    <!-- 5. Динамическое изменение стиля -->
+    <button id="change-color">Изменить цвет</button>
+
+    <!-- 7. Изменение размера блока -->
+    <div class="resizable" id="resizable-box">Размер</div>
+    <button id="increase-size">+</button>
+    <button id="decrease-size">-</button>
+
+  </body>
+</html>
