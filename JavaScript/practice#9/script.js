@@ -10,98 +10,98 @@
 
 //! Создай кнопку `"Сгенерировать"` и пустой`div`.При каждом клике кнопки в `div` должен появляться новый случайный номер от 1 до 100.
 
-// const btnGenerate = document.createElement("button");
-// const boxNumber = document.createElement("div");
-// btnGenerate.textContent = "Сгенерировать";
-// document.body.append(btnGenerate);
-// btnGenerate.addEventListener("click", () => {
-//   let random = Math.ceil(Math.random() * 100);
-//   boxNumber.style.display = "inline-block";
-//   boxNumber.textContent = random;
-//   btnGenerate.insertAdjacentElement("afterend", boxNumber);
-// });
+const btnGenerate = document.createElement("button");
+const boxNumber = document.createElement("div");
+btnGenerate.textContent = "Сгенерировать";
+document.body.append(btnGenerate);
+btnGenerate.addEventListener("click", () => {
+  let random = Math.ceil(Math.random() * 100);
+  boxNumber.style.display = "inline-block";
+  boxNumber.textContent = random;
+  btnGenerate.insertAdjacentElement("afterend", boxNumber);
+});
 
 // Создай массив строк`["Кнопка 1", "Кнопка 2", "Кнопка 3"]`.Напиши функцию`createButtons(buttons)`, которая создаёт кнопку(`button`) для каждой строки и добавляет её в`body`.  Добавь обработчик клика, который выводит в консоль текст кнопки.
 
-// const btnList = ["Кнопка 1", "Кнопка 2", "Кнопка 3"];
+const btnList = ["Кнопка 1", "Кнопка 2", "Кнопка 3"];
 
-// const createButtons = (btnList) => {
-//   for (let btn of btnList) {
-//     const btnElem = document.createElement("button");
-//     btnElem.style.display = "block";
-//     btnElem.textContent = btn;
-//     btnElem.addEventListener("click", () => {
-//       console.log(btnElem.textContent);
-//     });
-//     document.body.append(btnElem);
-//   }
-// };
-// createButtons(btnList);
+const createButtons = (btnList) => {
+  for (let btn of btnList) {
+    const btnElem = document.createElement("button");
+    btnElem.style.display = "block";
+    btnElem.textContent = btn;
+    btnElem.addEventListener("click", () => {
+      console.log(btnElem.textContent);
+    });
+    document.body.append(btnElem);
+  }
+};
+createButtons(btnList);
 
 //  Напиши функцию `generateBookList(books)`, которая принимает массив объектов `books`, где каждый объект содержит `title` и `author`. Функция должна создать список (`ul`), в котором каждый элемент (`li`) содержит название книги и автора, а затем добавить этот список в `body`.
 
-// const books = [
-//   { title: "Гарри Поттер", author: "Дж. К. Роулинг" },
-//   { title: "1984", author: "Джордж Оруэлл" },
-//   { title: "Мастер и Маргарита", author: "М. А. Булгаков" },
-// ];
+const books = [
+  { title: "Гарри Поттер", author: "Дж. К. Роулинг" },
+  { title: "1984", author: "Джордж Оруэлл" },
+  { title: "Мастер и Маргарита", author: "М. А. Булгаков" },
+];
 
-// function generateBookList(books) {
-//   const booksElement = document.createElement("ul");
-//   for (let book of books) {
-//     const bookElement = document.createElement("li");
-//     bookElement.textContent = book.title;
-//     booksElement.appendChild(bookElement);
-//   }
-//   document.body.append(booksElement);
-// }
+function generateBookList(books) {
+  const booksElement = document.createElement("ul");
+  for (let book of books) {
+    const bookElement = document.createElement("li");
+    bookElement.textContent = book.title;
+    booksElement.appendChild(bookElement);
+  }
+  document.body.append(booksElement);
+}
 
-// generateBookList(books);
+generateBookList(books);
 
 // Создай `ul` и две кнопки: `"Добавить"` и`"Удалить"`.По клику `"Добавить"` в список добавляется новый `li` с текстом`"Элемент X"`, где X — порядковый номер.По клику `"Удалить"` удаляется последний элемент списка.
 
-// const list = document.createElement("ul");
-// const btnAdd = document.createElement("button");
-// const btnDel = document.createElement("button");
-// btnAdd.textContent = "Добавить";
-// btnDel.textContent = "Удалить";
-// document.body.append(list);
-// list.insertAdjacentElement("beforebegin", btnAdd);
-// list.insertAdjacentElement("beforebegin", btnDel);
-// let calc = 0;
-// btnAdd.addEventListener("click", () => {
-//   const elemLi = document.createElement("li");
-//   elemLi.textContent = "Элемент " + calc;
-//   list.appendChild(elemLi);
-//   calc++;
-// });
+const list = document.createElement("ul");
+const btnAdd = document.createElement("button");
+const btnDel = document.createElement("button");
+btnAdd.textContent = "Добавить";
+btnDel.textContent = "Удалить";
+document.body.append(list);
+list.insertAdjacentElement("beforebegin", btnAdd);
+list.insertAdjacentElement("beforebegin", btnDel);
+let calc = 0;
+btnAdd.addEventListener("click", () => {
+  const elemLi = document.createElement("li");
+  elemLi.textContent = "Элемент " + calc;
+  list.appendChild(elemLi);
+  calc++;
+});
 
-// btnDel.addEventListener("click", () => {
-//   if (calc != 0) {
-//     list.lastElementChild.remove();
-//     calc--;
-//   }
-// });
+btnDel.addEventListener("click", () => {
+  if (calc != 0) {
+    list.lastElementChild.remove();
+    calc--;
+  }
+});
 
 // Создай список(`ul > li`).При клике на `li` он становится синим, а все остальные возвращаются к стандартному цвету.
 
-// function paintingElementBlue(e) {
-//   const elementsLi = document.querySelectorAll("ul li");
-//   for (let elem of elementsLi) {
-//     elem.style.backgroundColor = "inherit";
-//   }
-//   e.target.style.backgroundColor = "blue";
-// }
+function paintingElementBlue(e) {
+  const elementsLi = document.querySelectorAll("ul li");
+  for (let elem of elementsLi) {
+    elem.style.backgroundColor = "inherit";
+  }
+  e.target.style.backgroundColor = "blue";
+}
 
-// const list = document.createElement("ul");
-// for (let i = 0; i <= 5; i++) {
-//   const elem = document.createElement("li");
-//   elem.textContent = "Элемент " + i;
-//   elem.style.cursor = "pointer";
-//   elem.addEventListener("click", (e) => paintingElementBlue(e));
-//   list.appendChild(elem);
-// }
-// document.body.append(list);
+const list = document.createElement("ul");
+for (let i = 0; i <= 5; i++) {
+  const elem = document.createElement("li");
+  elem.textContent = "Элемент " + i;
+  elem.style.cursor = "pointer";
+  elem.addEventListener("click", (e) => paintingElementBlue(e));
+  list.appendChild(elem);
+}
+document.body.append(list);
 
 // Создай функцию `createProductCard(product)`, которая принимает объект `product` с полями `name`, `price`, `available`. Функция должна создать карточку товара (`div`), в которой название товара (`h2`), цена (`p`), и статус наличия (`p`, где текст "В наличии" или "Нет в наличии" в зависимости от `available`). Добавь карточку в `body`.
 // Используй тернарный оператор для отображения статуса наличия.
@@ -132,31 +132,31 @@
 // Дополнительно:
 // Добавь событие resize, чтобы при изменении размера окна результат обновлялся.
 
-// const btnCheckScreen = document.createElement("button");
-// const infoBlock = document.createElement("div");
-// btnCheckScreen.textContent = "Проверить устройство";
+const btnCheckScreen = document.createElement("button");
+const infoBlock = document.createElement("div");
+btnCheckScreen.textContent = "Проверить устройство";
 
-// function checkScreen(width) {
-//   let whichScreen = "";
-//   if (width < 576) {
-//     whichScreen = "Мобильное устройство";
-//   } else if (width <= 1024) {
-//     whichScreen = "Планшет";
-//   } else {
-//     whichScreen = "Десктоп";
-//   }
-//   return whichScreen;
-// }
+function checkScreen(width) {
+  let whichScreen = "";
+  if (width < 576) {
+    whichScreen = "Мобильное устройство";
+  } else if (width <= 1024) {
+    whichScreen = "Планшет";
+  } else {
+    whichScreen = "Десктоп";
+  }
+  return whichScreen;
+}
 
-// document.body.append(btnCheckScreen);
-// btnCheckScreen.addEventListener("click", () => {
-//   infoBlock.textContent = checkScreen(window.innerWidth);
-//   btnCheckScreen.insertAdjacentElement("afterend", infoBlock);
-// });
+document.body.append(btnCheckScreen);
+btnCheckScreen.addEventListener("click", () => {
+  infoBlock.textContent = checkScreen(window.innerWidth);
+  btnCheckScreen.insertAdjacentElement("afterend", infoBlock);
+});
 
-// window.addEventListener("resize", () => {
-//   infoBlock.textContent = checkScreen(window.innerWidth);
-// });
+window.addEventListener("resize", () => {
+  infoBlock.textContent = checkScreen(window.innerWidth);
+});
 
 // Добавь поле ввода (или prompt) и кнопку "Проверить". Пользователь вводит название товара.
 // Если товар есть и available === true — вывести "Товар в наличии"
