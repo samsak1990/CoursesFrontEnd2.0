@@ -1,0 +1,153 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+    min-height: 2500px;
+}
+
+.highlight{
+    box-shadow: 0 0 10px rgba(251, 255, 0, 1);
+}
+
+.upBtn{
+    display: none;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 5%;
+    right: 5%;
+    background: green;
+    outline: none;
+    border:none;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    line-height: 100%;
+}
+
+.wrapLoader{
+    display: block;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotateZ(45deg);
+}
+
+.loader {
+    perspective: 1000px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: #000000;
+  }
+    .loader:before,
+    .loader:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      animation: 1s spin linear infinite;
+    }
+    .loader:after {
+      color: #FF3D00;
+      transform: rotateY(70deg);
+      animation-delay: .4s;
+    }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotateccw {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+
+  @keyframes spin {
+    0%,
+    100% {
+      box-shadow: .2em 0px 0 0px currentcolor;
+    }
+    12% {
+      box-shadow: .2em .2em 0 0 currentcolor;
+    }
+    25% {
+      box-shadow: 0 .2em 0 0px currentcolor;
+    }
+    37% {
+      box-shadow: -.2em .2em 0 0 currentcolor;
+    }
+    50% {
+      box-shadow: -.2em 0 0 0 currentcolor;
+    }
+    62% {
+      box-shadow: -.2em -.2em 0 0 currentcolor;
+    }
+    75% {
+      box-shadow: 0px -.2em 0 0 currentcolor;
+    }
+    87% {
+      box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+  }
+
+.wrapperCards{
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+  background-color: darkcyan;
+  padding: 10px;
+}
+
+.card{
+  width: 200px;
+  height: 350px;
+  background-color: #40e0d0;
+  border: 1px solid #ffd700;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card > h3{
+  margin-bottom: 20px;
+}
+
+.imageProd{
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.btnBuy{
+  display: block;
+  width: 60%;
+  height: 30px;
+  background-color:#a90606;
+  color: white;
+  cursor: pointer;
+  margin: 0 auto;
+}
