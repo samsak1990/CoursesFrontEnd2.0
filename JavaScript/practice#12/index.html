@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Практика с формами и атрибутами</title>
+    <script defer src="script.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 40px;
+      }
+      input,
+      button,
+      select {
+        margin: 5px 0;
+        display: block;
+      }
+      .highlight {
+        border-color: green;
+      }
+      .user-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 8px;
+        max-width: 300px;
+      }
+
+      .controls {
+        margin: 10px 0;
+      }
+
+      .form-group {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. Работа с формами -->
+    <section id="forms">
+      <h2>1. Работа с формами</h2>
+      <form id="userForm">
+        <label>
+          Имя:
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" required />
+          <small id="emailError" style="color: red; display: none"
+            >Неверный формат email</small
+          >
+        </label>
+        <label>
+          Пароль:
+          <input type="password" name="password" required id="passwordField" />
+        </label>
+        <label>
+          <input type="checkbox" id="showPassword" /> Показать пароль
+        </label>
+        <button type="submit" disabled id="submitBtn">Отправить</button>
+      </form>
+    </section>
+
+    <!-- 2. События элементов формы -->
+    <section id="formEvents">
+      <h2>2. События элементов формы</h2>
+      <label>
+        Введите имя (input событие):
+        <input type="text" id="liveNameInput" />
+      </label>
+
+      <label>
+        Фокус / блюр эффект:
+        <input type="text" id="focusInput" />
+      </label>
+    </section>
+
+    <!-- 3. Работа с атрибутами -->
+    <section id="attributes">
+      <h2>3. Работа с атрибутами</h2>
+      <label>
+        Поле для манипуляций:
+        <input type="text" id="attrInput" />
+      </label>
+      <button id="toggleDisabledBtn">Переключить disabled</button>
+      <button id="setPlaceholderBtn">Установить placeholder</button>
+      <button id="checkRequiredBtn">Показать обязательные поля</button>
+      <ul id="requiredFieldsList"></ul>
+    </section>
+
+    <!-- 4. Работа с data-атрибутами -->
+    <section id="dataAttributes">
+      <h2>4. Работа с data-атрибутами</h2>
+
+      <h3>Цены товаров (data-price)</h3>
+      <ul id="productList">
+        <li data-price="100">Товар 1</li>
+        <li data-price="200">Товар 2</li>
+        <li data-price="300">Товар 3</li>
+      </ul>
+
+      <h3>Кнопки смены цвета (data-color)</h3>
+      <button data-color="red">Красный фон</button>
+      <button data-color="blue">Синий фон</button>
+
+      <h3>Таблица товаров (data-category)</h3>
+      <label>
+        Фильтр по категории:
+        <select id="categoryFilter">
+          <option value="all">Все</option>
+          <option value="books">Книги</option>
+          <option value="tech">Техника</option>
+        </select>
+      </label>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Товар</th>
+            <th>Категория</th>
+          </tr>
+        </thead>
+        <tbody id="productTable">
+          <tr data-category="books">
+            <td>Книга A</td>
+            <td>Книги</td>
+          </tr>
+          <tr data-category="tech">
+            <td>Ноутбук</td>
+            <td>Техника</td>
+          </tr>
+          <tr data-category="books">
+            <td>Книга B</td>
+            <td>Книги</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Задача 5: Многостраничная форма -->
+    <section id="stepFormSection">
+      <h2>1. Многостраничная форма</h2>
+      <form id="stepForm">
+        <!-- Шаг 1 -->
+        <div class="form-step active" data-step="1">
+          <label>
+            Имя:
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Email:
+            <input type="email" name="email" required />
+          </label>
+          <button type="button" id="nextStep1">Далее</button>
+        </div>
+
+        <!-- Шаг 2 -->
+        <div class="form-step" data-step="2">
+          <label>
+            Пароль:
+            <input type="password" name="password" required />
+          </label>
+          <label>
+            Подтвердите пароль:
+            <input type="password" name="confirmPassword" required />
+          </label>
+          <button type="button" id="prevStep2">Назад</button>
+          <button type="button" id="nextStep2">Далее</button>
+        </div>
+
+        <!-- Шаг 3 -->
+        <div class="form-step" data-step="3">
+          <label
+            ><input type="checkbox" name="interests" value="Книги" />
+            Книги</label
+          >
+          <label
+            ><input type="checkbox" name="interests" value="Фильмы" />
+            Фильмы</label
+          >
+          <label
+            ><input type="checkbox" name="interests" value="Музыка" />
+            Музыка</label
+          >
+          <button type="button" id="prevStep3">Назад</button>
+          <button type="submit">Отправить</button>
+        </div>
+      </form>
+
+      <div id="formSummary"></div>
+    </section>
+
+    <!-- Задача 6: Динамическое добавление полей -->
+    <section id="dynamicPhones">
+      <h2>2. Динамическое добавление номеров</h2>
+      <form id="phoneForm">
+        <div id="phoneFields">
+          <div class="phone-group">
+            <input type="tel" name="phones[]" placeholder="Введите номер" />
+            <button type="button" class="removePhoneBtn">Удалить</button>
+          </div>
+        </div>
+        <button type="button" id="addPhoneBtn">+ Добавить номер</button>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Задача 7: Автозаполнение демо-данными -->
+    <section id="demoFill">
+      <h2>3. Автозаполнение демо-данными</h2>
+      <form id="demoForm">
+        <label>
+          Имя:
+          <input type="text" name="demoName" />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="demoEmail" />
+        </label>
+        <label>
+          Возраст:
+          <input type="number" name="demoAge" />
+        </label>
+        <button type="button" id="fillDemoBtn">Заполнить демо-данными</button>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Задача 8: События клавиатуры -->
+    <section>
+      <h2>Задача 8: События клавиатуры</h2>
+      <label>Введите текст:</label>
+      <input type="text" id="keyboardInput" placeholder="Печатай здесь..." />
+      <p id="pressedKeyInfo"></p>
+    </section>
+
+    <!-- Задача 9: События мыши -->
+    <section>
+      <h2>Задача 9: Эффект наведения</h2>
+      <div class="hover-box" id="hoverBox">Наведи на меня</div>
+    </section>
+
+    <!-- Задача 10: addEventListener -->
+    <section>
+      <h2>Задача 10: addEventListener</h2>
+      <button id="clickBtn">Нажми меня</button>
+      <button id="removeHandlerBtn">Удалить обработчик клика</button>
+      <div id="eventInfo"></div>
+    </section>
+
+    <!-- Задача 11: Создание и добавление элементов -->
+    <section>
+      <h2>Задача 11: Добавление элементов</h2>
+      <input type="text" id="todoInput" placeholder="Новая задача" />
+      <button id="addTodoBtn">Добавить</button>
+      <ul id="todoList"></ul>
+
+      <hr />
+
+      <form id="cardForm">
+        <input type="text" id="cardTitle" placeholder="Заголовок" required />
+        <input type="text" id="cardContent" placeholder="Описание" required />
+        <button type="submit">Создать карточку</button>
+      </form>
+      <div id="cardContainer"></div>
+    </section>
+
+    <h2>Задача 12: Фильтрация и удаление</h2>
+    <div id="task12"></div>
+
+    <h2>Задача 13: Сортировка</h2>
+    <div class="controls">
+      <button id="sortUsers">Сортировать по алфавиту</button>
+    </div>
+    <div id="task13"></div>
+
+    <h2>Задача 14: Добавление пользователей</h2>
+    <form id="addUserForm">
+      <div class="form-group">
+        <input type="text" id="nameInput" placeholder="Имя" required />
+      </div>
+      <div class="form-group">
+        <input type="number" id="ageInput" placeholder="Возраст" required />
+      </div>
+      <button type="submit">Добавить пользователя</button>
+    </form>
+    <div id="task14"></div>
+
+  </body>
+</html>
